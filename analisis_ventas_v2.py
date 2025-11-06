@@ -6,10 +6,7 @@ def main(umbral_bajo=500):
     try:
         data = pd.read_csv(archivo, delimiter='|')
 
-        if 'Fecha' not in data.columns or 'Monto' not in data.columns:
-            print("ERROR: El archivo debe contener las columnas 'Fecha' y 'Monto'.")
 
-            return
 
         ventas_por_dia = data.groupby('Fecha')['Monto'].sum().reset_index()
         dias_bajos = ventas_por_dia[ventas_por_dia['Monto'] < umbral_bajo]
